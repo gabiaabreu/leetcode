@@ -6,7 +6,7 @@ of the merged string.
 
 Return the merged string. */
 
-// MY ATTEMPT
+// MY SOLUTION
 
 function mergeAlternately(word1, word2) {
   let merged = [];
