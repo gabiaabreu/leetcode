@@ -6,41 +6,23 @@ of the merged string.
 
 Return the merged string. */
 
-// FIRST ATTEMPT
+// MY ATTEMPT
 
 function mergeAlternately(word1, word2) {
-    let firstWord = word1.split('');
-    let secondWord = word2.split('');
+  let merged = [];
+  let longerWord = word1.length > word2.length ? word1 : word2;
+  // I could've also done that with Math.max function (returns the highest number)
 
-    let merged = [];
+  for (let i = 0; i < longerWord.length; i++) {
+    word1[i] && merged.push(word1[i]);
+    word2[i] && merged.push(word2[i]);
+  }
 
-    let isFirstWordLonger = firstWord.length > secondWord.length;
-    let isSecondWordLonger = secondWord.length > firstWord.length;
+  let stringResult = String(merged);
+  let resultModified = stringResult.replaceAll(",", "");
+  /* that could've been simplified by using merged.join("") -> it joins array 
+  members, the ("") means the join is made without a character in the middle.
+  if it was join("-") the final strig would be something like "a-b-c-d" */
 
-    if (isFirstWordLonger) {
-        for (let i = 0; i < secondWord.length; i++) {
-            merged.push(firstWord[i]);
-            merged.push(secondWord[i]);
-        }
-        for (let i = secondWord.length; i < firstWord.length; i++) {
-            merged.push(firstWord[i]);
-        }
-    } else if (isSecondWordLonger) {
-        for (let i = 0; i < firstWord.length; i++) {
-            merged.push(firstWord[i]);
-            merged.push(secondWord[i]);
-        }
-        for (let i = firstWord.length; i < secondWord.length; i++) {
-            merged.push(secondWord[i]);
-        }
-    } else {
-        for (let i = 0; i < firstWord.length; i++) {
-            merged.push(firstWord[i]);
-            merged.push(secondWord[i]);
-        }
-    }
-
-    let stringResult = String(merged);
-    let resultModified = stringResult.replaceAll(',', '');
-    return resultModified;
-};
+  return resultModified;
+}
